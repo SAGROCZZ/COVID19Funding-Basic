@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+
+    <script>
+        window.onload = function () {
+            if (typeof web3 == 'undefined') {
+                document.getElementById("metamask").innerHTML = "you need metamask installed";
+            }
+            getOrgs();
+        }
+
+       function getOrgs() {
+         
+           try{
+               var abi = [
+{
+    "inputs": [
+        {
+            "internalType": "address",
+            "name": "_address",
+            "type": "address"
+        },
+        {
+            "internalType": "string",
+            "name": "_orgName",
+            "type": "string"
+        },
+        {
+            "internalType": "string",
+            "name": "_orgCountry",
+            "type": "string"
+        },
+        {
+            "internalType": "string",
+            "name": "_fundingPurpose",
+            "type": "string"
+        },
+        {
+            "internalType": "uint256",
+            "name": "_amtNeeded",
+            "type": "uint256"
+        }
+    ],
+    "name": "addOrg",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+},
+{
+    "inputs": [
+        {
+            "internalType": "address",
+            "name": "_toOrg",
+            "type": "address"
+        },
+        {
+            "internalType": "uint256",
+            "name": "_amount",
+            "type": "uint256"
+        }
+    ],
+    "name": "donateFunds",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+},
+{
+    "inputs": [],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+},
+{
+    "anonymous": false,
+    "inputs": [
+        {
+            "indexed": false,
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+        },
+        {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+        }
+    ],
+    "name": "donate",
+    "type": "event"
+},
+{
+    "inputs": [
+        {
+            "internalType": "address",
+            "name": "_toOrg",
+            "type": "address"
+        }
+    ],
+    "name": "withdrawFunds",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+},
+{
+    "inputs": [],
+    "name": "getBalance",
+    "outputs": [
+        {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+        }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+},
+{
+    "inputs": [
+        {
+            "internalType": "address",
+            "name": "_address",
+            "type": "address"
+        }
+    ],
+    "name": "getOrg",
+    "outputs": [
+        {
+            "internalType": "string",
+            "name": "",
+            "type": "string"
+        },
+        {
+            "internalType": "string",
+            "name": "",
+            "type": "string"
+        },
+        {
+            "internalType": "string",
+            "name": "",
+            "type": "string"
+        },
+        {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+        },
+        {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+        }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+},
+{
+    "inputs": [],
+    "name": "getOrgs",
+    "outputs": [
+        {
+            "internalType": "address[]",
+            "name": "",
+            "type": "address[]"
+        }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+},
+{
+    "inputs": [
+        {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+        }
+    ],
+    "name": "orgAccts",
+    "outputs": [
+        {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+        }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+}
+               ]
+               var contractaddress = "0x4f6ae0b2e30d72bc5d164adafd734a7d9a72d8ab";
+               var myabi = web3.eth.contract(abi);
+               var myFunction = myabi.at(contractaddress);
+           
+               myFunction.getOrgs.call(function (err, result) {
+                   if (err) { document.getElementById("metamask").innerHTML = err; }
+                   if (result) {
+                       var i;
+                       for (i = 0; i < result.length; i++) {
+                           document.getElementById("xaddress").innerHTML += result[i] + "</br></br>";
+                           myFunction.getOrg.call(result[i], function (aerr, aresult) {
+                               if (aresult) {
+                                   document.getElementById("xname").innerHTML += aresult[0] + "</br></br>";
+                                   document.getElementById("xcountry").innerHTML += aresult[1] + "</br></br>";
+                                   document.getElementById("xpurpose").innerHTML += aresult[2] + "</br></br>";
+                                   document.getElementById("xrequested").innerHTML += aresult[3] + " ETH" + "</br></br>";
+                                   document.getElementById("xraised").innerHTML += web3.fromWei( aresult[4],'ether') + " ETH"+ "</br></br>";
+                               }
+                           });
+                       }
+                   }
+               });
+
+           }
+           catch (err) {
+               document.getElementById("metamask").innerHTML = err;
+           }
+
+        }
+    </script>
+
+    <div id="metamask"> </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h1 class="p-2">
+                Covid-19 Funding
+            </h1>
+            
+        </div>
+        <div class="col-md-6">
+            <ul class="nav nav-tabs">
+                <li class="p-4">
+                    <a class="btn btn-info" href="Index.html">Home</a>
+                </li>
+                <li class="p-4">
+                    <a class="btn btn-info" href="Register.html">New Request</a>
+                </li>
+            </ul>     
+           </div>
+
+        <div class="col-md-12 text-center p-4">
+            <h3>List of Organisation's Funding Request</h3>
+        </div>
+
+        <div class="col-md-12 text-center p-3">
+            <table style="width:100%" class="table" >
+                <thead>
+                    <tr>
+                        <td>Donation Address</td>
+                        <td>Organisation</td>
+                        <td>Country</td>
+                        <td>Purpose</td>
+                        <td>Amt Requested</td>
+                        <td>Amt Raised</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td id="xaddress">
+
+                        </td>
+                        <td id="xname"></td>
+                        <td id="xcountry"></td>
+                        <td id="xpurpose"></td>
+                        <td id="xrequested"></td>
+                        <td id="xraised"></td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+
+            <br />
+            <h4 style="color:green">To make a donation please copy the organisation's Ethereum Address</h4>
+            <a href="Donate.html" class="btn btn-info">Donate</a>
+        </div> 
+
+    </div>
+
+</body>
+</html>
