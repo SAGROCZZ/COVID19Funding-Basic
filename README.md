@@ -2,7 +2,7 @@
 
 COVID-19 Funding Allocation send ethers to the organisation that needs it or register your organisation and help the world fight this virus!
 
-#Our Team
+# Our Team
 
 1. Sneh Aashish Gupta
 2. Aks Umeshkumar Patel
