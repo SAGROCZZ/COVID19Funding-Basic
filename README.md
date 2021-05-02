@@ -1,3 +1,3 @@
 # Guide
 
-Open the Covid19Funding File to access code files!
+Open the "Covid19Funding" file to access code files!
