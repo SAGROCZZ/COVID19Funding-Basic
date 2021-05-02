@@ -1,15 +1,15 @@
-## Covid19Funding - Idea and Explaination
+# Covid19Funding - Idea and Explaination
 
 COVID-19 Funding Allocation send ethers to the organisation that needs it or register your organisation and help the world fight this virus!
 
-# Our Team
+## Our Team
 
 1. Sneh Aashish Gupta
 2. Aks Umeshkumar Patel
 3. Hitesh Vijay
 4. Anirudh Krishnamurthy
 
-# It seeks to solve the following problems:
+## It seeks to solve the following problems:
 
 - Addressing the menace of price gouging of critical supplies by decentralised model for mapping the demand and supply of these supplies as localised pricing is often exploitative and without any checkjs and balances.
 
@@ -17,7 +17,7 @@ COVID-19 Funding Allocation send ethers to the organisation that needs it or reg
 
 - Implementation of Direct Benefit Transfer (DBT) model by equal allocation of funds from a pool fund i.e. ‘SOS-Funds-In-Need’ that’ll act as a mother fund to other child funds or beneficiaries registered on this platform with verified COVID+ reports, fund-raising through other unconventional means so as to increase donations are also required as conventional approach as time has tested though encouraging is inadequate.
 
-# The solutions are:
+## The solutions are:
 
 - The issue of leakage is gone away with blockchain as the secure transfer does away with middle men.
 
